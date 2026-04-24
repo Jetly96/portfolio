@@ -1,74 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mario Laganara | Aerospace Software Test & Systems Engineer</title>
 
   <style>
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #020617;
-      color: #e5e7eb;
-      line-height: 1.6;
+      color: white;
     }
 
     header {
-      padding: 30px 10%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .logo {
-      font-weight: bold;
-      color: #67e8f9;
+    .logo { font-weight: bold; color: #67e8f9; }
+
+    nav a {
+      color: #cbd5e1;
+      margin-left: 24px;
+      text-decoration: none;
+      font-size: 14px;
     }
 
-    .hero {
-      padding: 80px 10%;
+    nav a:hover { color: #67e8f9; }
+
+    .lang button {
+      margin-left: 8px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: white;
+      cursor: pointer;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 8% 80px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(2,6,23,.92), rgba(2,6,23,.62));
+    }
+
+    .content {
+      position: relative;
       max-width: 1000px;
+      z-index: 2;
+    }
+
+    .home {
+      background-image:
+        linear-gradient(rgba(2,6,23,.4), rgba(2,6,23,.8)),
+        url("https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .about {
+      background-image:
+        linear-gradient(rgba(2,6,23,.4), rgba(2,6,23,.85)),
+        url("https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .projects {
+      background-image:
+        linear-gradient(rgba(2,6,23,.5), rgba(2,6,23,.9)),
+        url("https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .services {
+      background-image:
+        linear-gradient(rgba(2,6,23,.45), rgba(2,6,23,.88)),
+        url("https://images.unsplash.com/photo-1516641396056-0ce60a111a09?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .contact {
+      background-image:
+        linear-gradient(rgba(2,6,23,.45), rgba(2,6,23,.88)),
+        url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80");
     }
 
     .tag {
       color: #67e8f9;
       font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 56px;
-      line-height: 1.1;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.05;
       margin: 0;
     }
 
     h2 {
-      font-size: 34px;
-      color: white;
-      margin-top: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      margin: 0 0 24px;
     }
 
     p {
       color: #cbd5e1;
-      font-size: 18px;
+      font-size: 19px;
+      max-width: 760px;
+      line-height: 1.7;
     }
 
-    section {
-      padding: 60px 10%;
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 15px 24px;
+      border-radius: 14px;
+      background: #67e8f9;
+      color: #020617;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .card-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 35px;
     }
 
     .card {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       padding: 24px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
     }
 
     .card h3 {
@@ -76,21 +160,19 @@
       margin-top: 0;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 22px;
-      background: #67e8f9;
-      color: #020617;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
+    .contact-box {
+      background: rgba(15, 23, 42, 0.85);
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
     }
 
-    footer {
-      padding: 40px 10%;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
+    .hidden { display: none; }
+
+    @media (max-width: 800px) {
+      header { flex-direction: column; gap: 12px; }
+      nav a { margin: 0 8px; }
+      section { padding-top: 160px; }
     }
   </style>
 </head>
@@ -98,109 +180,136 @@
 <body>
   <header>
     <div class="logo">Mario Laganara</div>
-    <div>Aerospace • V&V • Systems</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="lang">
+      <button onclick="setLang('it')">IT</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="tag">Aerospace Software Verification & Systems Engineer</div>
-      <h1>Building reliability into safety-critical aerospace software.</h1>
-      <p>
-        Aerospace engineer with 4+ years of experience in verification,
-        validation and system testing of safety-critical avionics software.
-      </p>
-      <a class="button" href="mailto:mariolaganara96@hotmail.it">Contact me</a>
-    </section>
+  <section id="home" class="home">
+    <div class="content">
+      <div class="tag">Aerospace • Software V&V • Systems</div>
 
-    <section>
-      <h2>About Me</h2>
-      <p>
-        I work across the full V&V lifecycle: from requirements analysis to test
-        execution, coverage evaluation and system integration. My focus is on
-        building reliable systems where traceability, quality and engineering
-        rigor are essential.
-      </p>
-    </section>
-
-    <section>
-      <h2>Core Skills</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Software V&V</h3>
-          <p>Requirements analysis, test design, execution, findings and test reporting.</p>
-        </div>
-        <div class="card">
-          <h3>System Testing</h3>
-          <p>Integration testing on RIGs and test benches for aerospace systems.</p>
-        </div>
-        <div class="card">
-          <h3>Requirements</h3>
-          <p>HLR analysis, traceability, DOORS/Windchill workflows and documentation.</p>
-        </div>
-        <div class="card">
-          <h3>Tools & Standards</h3>
-          <p>Python, VALID, Vectorcast, LDRA, DO-178C awareness, AFDX, CAN tools.</p>
-        </div>
+      <div class="it">
+        <h1>Affidabilità per software aerospace safety-critical.</h1>
+        <p>
+          Sono Mario Laganara, Aerospace Software Test & Systems Engineer.
+          Mi occupo di verifica, validazione, requisiti e test di sistemi avionici e aerospace.
+        </p>
+        <a class="btn" href="#contact">Contattami</a>
       </div>
-    </section>
 
-    <section>
-      <h2>Experience Highlights</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Avionics V&V</h3>
-          <p>
-            V&V activities on avionics systems such as EDCU and CDS across
-            multiple helicopter programs.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Coverage Analysis</h3>
-          <p>
-            Coverage environment setup, source comparison, loadset creation,
-            test execution and result analysis.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Fuel System Testing</h3>
-          <p>
-            System and test software engineering for aerospace fuel systems,
-            including HLR, HLT and bench testing.
-          </p>
-        </div>
+      <div class="en hidden">
+        <h1>Building reliability into safety-critical aerospace software.</h1>
+        <p>
+          I am Mario Laganara, Aerospace Software Test & Systems Engineer.
+          I work on verification, validation, requirements and testing for avionics and aerospace systems.
+        </p>
+        <a class="btn" href="#contact">Contact me</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
+  <section id="about" class="about">
+    <div class="content">
+      <div class="it">
+        <h2>About Me</h2>
+        <p>
+          Ingegnere aerospaziale con esperienza in software verification,
+          validation e system testing. Lavoro lungo il ciclo V&V: analisi requisiti,
+          test design, esecuzione su RIG/banco, tracciabilità, findings e report.
+        </p>
+      </div>
+
+      <div class="en hidden">
+        <h2>About Me</h2>
+        <p>
+          Aerospace engineer with experience in software verification,
+          validation and system testing. I work across the V&V lifecycle:
+          requirements analysis, test design, RIG/bench execution, traceability,
+          findings and reporting.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="content">
       <h2>Projects & Case Studies</h2>
-      <div class="card-grid">
+
+      <div class="grid">
         <div class="card">
-          <h3>Requirements-Based Testing Workflow</h3>
-          <p>
-            A structured example of how requirements can be transformed into
-            test cases, execution evidence and traceability.
-          </p>
+          <h3>Requirements-Based Testing</h3>
+          <p>Workflow dimostrativo: da requisito a test case, esecuzione, evidenza e tracciabilità.</p>
         </div>
+
         <div class="card">
-          <h3>Coverage Analysis Support Tool</h3>
-          <p>
-            Concept for a Python-based support tool to organize coverage inputs,
-            outputs and reports.
-          </p>
+          <h3>Coverage Analysis Support</h3>
+          <p>Concept di tool Python per organizzare input, output e risultati di coverage analysis.</p>
         </div>
+
         <div class="card">
-          <h3>Test Bench Validation Example</h3>
-          <p>
-            A simplified case study showing how system behavior can be validated
-            on a controlled test bench.
-          </p>
+          <h3>Test Bench Validation</h3>
+          <p>Case study semplificato su validazione di comportamento sistema in ambiente controllato.</p>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    © 2026 Mario Laganara — mariolaganara96@hotmail.it
-  </footer>
+  <section id="services" class="services">
+    <div class="content">
+      <div class="it">
+        <h2>Servizi Offerti</h2>
+        <div class="grid">
+          <div class="card"><h3>Requirements Analysis</h3><p>Analisi requisiti HLR/LLR, coerenza, tracciabilità e documentazione tecnica.</p></div>
+          <div class="card"><h3>Software V&V</h3><p>Test strategy, test sequence, esecuzione test, findings e test report.</p></div>
+          <div class="card"><h3>System Testing</h3><p>Supporto a test su RIG, banco e ambienti di integrazione.</p></div>
+          <div class="card"><h3>Test Tools</h3><p>Creazione di piccoli tool Python a supporto di test, analisi e reportistica.</p></div>
+        </div>
+      </div>
+
+      <div class="en hidden">
+        <h2>Services Offered</h2>
+        <div class="grid">
+          <div class="card"><h3>Requirements Analysis</h3><p>HLR/LLR analysis, consistency checks, traceability and technical documentation.</p></div>
+          <div class="card"><h3>Software V&V</h3><p>Test strategy, test sequences, test execution, findings and test reporting.</p></div>
+          <div class="card"><h3>System Testing</h3><p>Support for RIG, bench and integration testing environments.</p></div>
+          <div class="card"><h3>Test Tools</h3><p>Development of small Python tools to support testing, analysis and reporting.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="content">
+      <h2>Contact</h2>
+      <div class="contact-box">
+        <p>Email: <strong>mariolaganara96@hotmail.it</strong></p>
+        <p>Phone: <strong>+39 327 954 2102</strong></p>
+        <a class="btn" href="mailto:mariolaganara96@hotmail.it">Send Email</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.it').forEach(el => {
+        el.classList.toggle('hidden', lang !== 'it');
+      });
+
+      document.querySelectorAll('.en').forEach(el => {
+        el.classList.toggle('hidden', lang !== 'en');
+      });
+    }
+  </script>
 </body>
 </html>
